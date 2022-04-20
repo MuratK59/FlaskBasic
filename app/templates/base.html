@@ -1,0 +1,12 @@
+<html>
+    <head>
+        {% if baslik %}
+            <title>{{baslik}}</title>
+        {% else %}
+            <title>Python Flask</title>
+        {% endif %}
+    </head>
+    <body>
+    {% block icerik %}{% endblock icerik %}
+    </body>
+</html>
