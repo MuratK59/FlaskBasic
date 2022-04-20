@@ -1,0 +1,2 @@
+# FlaskBasic
+Flask temel kullanımı
