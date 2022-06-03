@@ -1,9 +1,10 @@
 from app import app
-from flask import render_template
+from flask import flash, redirect, render_template, url_for
+
+from app.forms import LoginForm
 
 @app.route('/')
 @app.route('/index')
-
 def index():
     user = {'kullaniciadi' : 'Mahmut F'}
     baslik = 'Anasayfa F'
@@ -31,3 +32,19 @@ def index():
     #     </html>
     # '''
     return render_template('home.html', baslik=baslik, user=user, gonderiler=gonderiler)
+
+
+# @app.route("/login") #buna dekoratör deniyor
+# def login():
+#     form = LoginForm()
+#     return render_template('login.html', title='Sign In', form=form)
+
+@app.route('/login', methods=['GET','POST'])
+def login():
+    form = LoginForm()
+    if form.validate_on_submit():
+        flash('Login request for user {}, remember_me={}'. format(
+            form.username.data, form.remember_me
+        ))
+        return redirect(url_for('index'))
+    return render_template('login.html', title='Sign In', form=form)

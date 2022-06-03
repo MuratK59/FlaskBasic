@@ -7,6 +7,21 @@
         {% endif %}
     </head>
     <body>
-    {% block icerik %}{% endblock icerik %}
+        <div>
+            <a href="/index">Anasayfa</a>
+            <a href="{{url_for('login')}}">Giriş</a>
+        </div>
+
+        {% with messages = get_flashed_messages()  %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert-success">
+                        {{message}}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        {% block icerik %}{% endblock icerik %}
     </body>
 </html>
